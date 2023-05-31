@@ -34,7 +34,7 @@ exports.get = (getUrl, params, callback, redirects) => {
         headers: {
             'Accept': 'application/xrds+xml,text/html,text/plain,*/*;q=0.9'
         }}).then(async result => {
-            callback(await result.json(), Object.fromEntries(result.headers), result.status);
+            callback(await result.text(), Object.fromEntries(result.headers), result.status);
     }).catch(err => callback(err));
 };
 
@@ -47,6 +47,6 @@ exports.post = function (postUrl, data, callback, redirects) {
             'Content-Type': 'application/x-www-form-urlencoded'
         }
     }).then(async response => {
-        callback(await response.json(), Object.fromEntries(response.headers), response.status);
+        callback(await response.text(), Object.fromEntries(response.headers), response.status);
     }).catch(err => callback(err));
 };
